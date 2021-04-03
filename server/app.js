@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const PORT = 5000
-//import and 
+//import and define
 const {MONGOURI} = require('./keys')
 //import
 require('./models/user')
