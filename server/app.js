@@ -2,12 +2,16 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const PORT = 5000
-
+//import and 
 const {MONGOURI} = require('./keys')
-
+//import
 require('./models/user')
 
+//middlewares
+app.use(express.json())
+app.use(require('./routes/auth'))
 
+//connection
 mongoose.connect(MONGOURI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -21,7 +25,7 @@ mongoose.connection.on('error', (err) =>{
 })
 
 
-
+//port
 app.listen(PORT, ()=>{
     console.log("Server is running on", PORT)
 })
