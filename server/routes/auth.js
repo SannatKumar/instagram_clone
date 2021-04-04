@@ -41,6 +41,32 @@ router.post('/signup', (req, res) =>{
     })
 })
 
+router.post('/signin', (req, res) =>{
+    const{email, password} = req.body
+    if(!email || !password) {
+        res.status(422).json({err:"Please add email or password"})
+    }
+    User.findOne({email:email})
+    .then(savedUser =>{
+        if(!savedUser){
+            res.status(422).json({error: "Invalid Email or Password."})
+        }
+        //password compare
+        bcrypt.compare(password, savedUser.password)
+        .then(doMatch =>{
+            if(doMatch){
+                res.json({message: "Successfully Singed in"})
+            }
+            else{
+                res.status(422).json({error: "Invalid Email or Password."})
+            }
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    })
+})
+
 
 
 
