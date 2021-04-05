@@ -25,7 +25,7 @@ require('./models/post')
 //middlewares
 app.use(express.json())
 app.use(require('./routes/auth'))
-app.use(require('./models/post'))
+app.use(require('./routes/post'))
 
 
 
